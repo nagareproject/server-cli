@@ -7,11 +7,8 @@
 # this distribution.
 # --
 
-import os
-
 from nagare.admin import app_serve
 from nagare.services import plugin
-from nagare.server.services import Services
 
 
 class CLIApp(plugin.Plugin):
@@ -26,14 +23,14 @@ class CLIApp(plugin.Plugin):
 
 
 class App(app_serve.Serve):
-    def _create_service(self, config_filename, activated_by_default):
-        return Services(
-            config_filename, '', 'nagare.services', activated_by_default,
+
+    def _create_service(self, config_filename, activated_by_default, **vars):
+        return super(App, self)._create_service(
+            config_filename, activated_by_default,
             app_name=self.name,
-            here=os.path.dirname(config_filename) if config_filename else '',
-            config_filename=config_filename or '',
-            application={'name': 'cli'}, publisher={'type': 'cli'},
-            **os.environ
+            application={'name': 'cli'},
+            publisher={'type': 'cli'},
+            **vars
         )
 
     def run(self, services_service, **arguments):
