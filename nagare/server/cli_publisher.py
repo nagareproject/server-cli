@@ -11,7 +11,9 @@ from nagare.server import publisher
 
 
 class Publisher(publisher.Publisher):
-    INTERNAL_RELOADER = True
+
+    def start_reloader(self, reloader):
+        pass
 
     def _serve(self, app, **params):
         return self.start_handle_request(app, **params)

@@ -24,9 +24,12 @@ class CLIApp(plugin.Plugin):
 
 class App(app_serve.Serve):
 
-    def _create_service(self, config_filename, activated_by_default, **vars):
+    def handle_start(self):
+        pass
+
+    def _create_service(self, config, config_filename, activated_by_default, **vars):
         return super(App, self)._create_service(
-            config_filename, activated_by_default,
+            config, config_filename, activated_by_default,
             app_name=self.name,
             application={'name': 'cli'},
             publisher={'type': 'cli'},
