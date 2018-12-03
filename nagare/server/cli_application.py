@@ -27,9 +27,9 @@ class App(app_serve.Serve):
     def handle_start(self):
         pass
 
-    def _create_service(self, config, config_filename, activated_by_default, **vars):
-        return super(App, self)._create_service(
-            config, config_filename, activated_by_default,
+    def _create_services(self, config, config_filename, **vars):
+        return super(App, self)._create_services(
+            config, config_filename,
             app_name=self.name,
             application={'name': 'cli'},
             publisher={'type': 'cli'},
