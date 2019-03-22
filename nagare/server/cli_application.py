@@ -12,7 +12,6 @@ from nagare.services import plugin
 
 
 class CLIApp(plugin.Plugin):
-    CONFIG_SPEC = {}
 
     def handle_start(self):
         pass
