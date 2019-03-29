@@ -7,6 +7,8 @@
 # this distribution.
 # --
 
+import sys
+
 from nagare.admin import app_serve
 from nagare.services import plugin
 
@@ -23,6 +25,10 @@ class CLIApp(plugin.Plugin):
 
 class App(app_serve.Serve):
 
+    def __init__(self):
+        super(App, self).__init__()
+        sys.exit(self.execute())
+
     def handle_start(self):
         pass
 
@@ -31,7 +37,6 @@ class App(app_serve.Serve):
             config, config_filename,
             app_name=self.name,
             application={'name': 'cli'},
-            publisher={'type': 'cli'},
             **vars
         )
 
