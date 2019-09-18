@@ -33,6 +33,9 @@ setup(
     install_requires=['nagare-commands', 'nagare-services', 'nagare-server'],
     tests_require=['pytest'],
     entry_points='''
+        [nagare.services]
+        exceptions = nagare.services.cli_exceptions_handler:Exceptions
+
         [nagare.applications]
         cli = nagare.server.cli_application:CLIApp
 

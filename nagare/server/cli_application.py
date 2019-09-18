@@ -15,7 +15,7 @@ from nagare.services import plugin
 
 class CLIApp(plugin.Plugin):
 
-    def handle_start(self):
+    def handle_start(self, app):
         pass
 
     @staticmethod
@@ -29,7 +29,7 @@ class App(app_serve.Serve):
         super(App, self).__init__()
         sys.exit(self.execute())
 
-    def handle_start(self):
+    def handle_start(self, app):
         pass
 
     def _create_services(self, config, config_filename, **vars):
