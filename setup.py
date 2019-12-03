@@ -14,8 +14,8 @@ import os
 from setuptools import setup, find_packages
 
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as version:
-    LONG_DESCRIPTION = version.read()
+with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as long_description:
+    LONG_DESCRIPTION = long_description.read()
 
 setup(
     name='nagare-server-cli',
