@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 # --
-# Copyright (c) 2008-2019 Net-ng.
+# Copyright (c) 2008-2020 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -28,10 +28,10 @@ def default_handler(exception, exceptions_service, **context):
     return status
 
 
-class Exceptions(base_exceptions_handler.Exceptions):
-    LOAD_PRIORITY = base_exceptions_handler.Exceptions.LOAD_PRIORITY + 1
+class Exceptions(base_exceptions_handler.ExceptionsService):
+    LOAD_PRIORITY = base_exceptions_handler.ExceptionsService.LOAD_PRIORITY + 1
 
     CONFIG_SPEC = dict(
-        base_exceptions_handler.Exceptions.CONFIG_SPEC,
+        base_exceptions_handler.ExceptionsService.CONFIG_SPEC,
         exception_handler='string(default="nagare.services.cli_exceptions_handler:default_handler")'
     )
