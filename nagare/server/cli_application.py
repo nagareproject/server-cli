@@ -11,6 +11,7 @@ import sys
 
 from nagare.admin import app_serve
 from nagare.services import plugin
+from nagare.config import config_from_dict
 
 
 class CLIApp(plugin.Plugin):
@@ -18,9 +19,11 @@ class CLIApp(plugin.Plugin):
     def handle_start(self, app):
         pass
 
-    @staticmethod
-    def handle_request(chain, command, **arguments):
-        return command.handle_request(**arguments)
+    def handle_request(self, chain, command, **arguments):
+        config = self.plugin_config.copy()
+        del config['activated']
+
+        return command.handle_request(arguments=arguments, **config)
 
 
 class App(app_serve.Serve):
@@ -32,13 +35,15 @@ class App(app_serve.Serve):
     def handle_start(self, app):
         pass
 
-    def _create_services(self, config, config_filename, **vars):
-        return super(App, self)._create_services(
-            config, config_filename,
-            app_name=self.name,
-            application={'name': 'cli'},
-            **vars
-        )
+    def _create_services(self, config, config_filename):
+        mandatory_config = {
+            'application': {'name': 'cli'},
+            'publisher': {'type': 'cli'},
+            'reloader': {'activated': 'off'}
+        }
+        config.merge(config_from_dict(mandatory_config))
+
+        return super(App, self)._create_services(config, config_filename)
 
     def run(self, services_service, **arguments):
         return services_service(super(App, self).run, command=self, **arguments)
