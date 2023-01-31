@@ -1,5 +1,5 @@
 # --
-# Copyright (c) 2008-2022 Net-ng.
+# Copyright (c) 2008-2023 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -10,12 +10,11 @@
 import sys
 
 from nagare.admin import app_serve
-from nagare.services import plugin
 from nagare.config import config_from_dict
+from nagare.services import plugin
 
 
 class CLIApp(plugin.Plugin):
-
     def handle_start(self, app):
         pass
 
@@ -27,7 +26,6 @@ class CLIApp(plugin.Plugin):
 
 
 class App(app_serve.Serve):
-
     def __init__(self):
         super(App, self).__init__()
         sys.exit(self.execute())
@@ -39,7 +37,7 @@ class App(app_serve.Serve):
         mandatory_config = {
             'application': {'name': 'cli'},
             'publisher': {'type': 'cli'},
-            'reloader': {'activated': 'off'}
+            'reloader': {'activated': 'off'},
         }
         config.merge(config_from_dict(mandatory_config))
 

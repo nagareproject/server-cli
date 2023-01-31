@@ -1,0 +1,8 @@
+[nagare.services]
+exceptions = nagare.services.cli_exceptions_handler:Exceptions
+
+[nagare.applications]
+cli = nagare.server.cli_application:CLIApp
+
+[nagare.publishers]
+cli = nagare.server.cli_publisher:Publisher

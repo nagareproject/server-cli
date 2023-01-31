@@ -1,5 +1,5 @@
 # --
-# Copyright (c) 2008-2022 Net-ng.
+# Copyright (c) 2008-2023 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -11,6 +11,5 @@ from nagare.server import publisher
 
 
 class Publisher(publisher.Publisher):
-
     def _serve(self, app, activated, services_service, **params):
         return self.start_handle_request(app, services_service, **params)
