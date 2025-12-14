@@ -1,5 +1,5 @@
 # --
-# Copyright (c) 2008-2024 Net-ng.
+# Copyright (c) 2014-2025 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -27,7 +27,7 @@ class CLIApp(plugin.Plugin):
 
 class App(app_serve.Serve):
     def __init__(self):
-        super(App, self).__init__()
+        super().__init__()
         sys.exit(self.execute())
 
     def handle_start(self, app):
@@ -41,7 +41,7 @@ class App(app_serve.Serve):
         }
         config.merge(config_from_dict(mandatory_config))
 
-        return super(App, self)._create_services(config, config_filename)
+        return super()._create_services(config, config_filename)
 
     def run(self, services_service, **arguments):
-        return services_service(super(App, self).run, command=self, **arguments)
+        return services_service(super().run, command=self, **arguments)
