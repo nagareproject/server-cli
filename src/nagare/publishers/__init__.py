@@ -7,9 +7,6 @@
 # this distribution.
 # --
 
-from nagare.server import publisher
+from pkgutil import extend_path
 
-
-class Publisher(publisher.Publisher):
-    def _serve(self, app, activated, services_service, **params):
-        return self.start_handle_request(app, services_service, **params)
+__path__ = extend_path(__path__, __name__)

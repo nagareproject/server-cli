@@ -5,4 +5,4 @@ exceptions = nagare.services.cli_exceptions_handler:Exceptions
 cli = nagare.server.cli_application:CLIApp
 
 [nagare.publishers]
-cli = nagare.server.cli_publisher:Publisher
+cli = nagare.publishers.cli_publisher:Publisher
